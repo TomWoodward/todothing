@@ -12,7 +12,7 @@ interface Services {
   addTodo: (todo: Todo) => void;
 }
 
-// utils 
+// utils
 
 const isComplete = (todo: Todo) => todo.resolved === true;
 
