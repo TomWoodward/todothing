@@ -32,7 +32,9 @@ const ServiceContext = React.createContext<Services>({
 
 // components
 
-const TodoListItem: React.FC<{todo: Todo, remove: () => void, save: (newer: Todo) => void}> = ({todo, remove, save}) => <div>
+type TodoListItemProps = {todo: Todo, remove: () => void, save: (newer: Todo) => void};
+
+const TodoListItem: React.FC<TodoListItemProps> = ({todo, remove, save}) => <div>
   <input type="checkbox" checked={todo.resolved} onChange={() => save({
     ...todo,
     resolved: !todo.resolved,
@@ -41,7 +43,10 @@ const TodoListItem: React.FC<{todo: Todo, remove: () => void, save: (newer: Todo
   <button onClick={remove}>remove</button>
 </div>;
 
-const TodoList: React.FC<{todos: Todo[]}> = ({todos}) => <ServiceContext.Consumer>
+
+type TodoListProps = {todos: Todo[]};
+
+const TodoList: React.FC<TodoListProps> = ({todos}) => <ServiceContext.Consumer>
   {({updateTodo, removeTodo}) => <React.Fragment>
     {todos.map(todo => <TodoListItem
       todo={todo}
