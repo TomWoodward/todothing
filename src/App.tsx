@@ -47,13 +47,11 @@ const TodoListItem: React.FC<TodoListItemProps> = ({todo, remove, save}) => <div
 type TodoListProps = {todos: Todo[]};
 
 const TodoList: React.FC<TodoListProps> = ({todos}) => <ServiceContext.Consumer>
-  {({updateTodo, removeTodo}) => <React.Fragment>
-    {todos.map(todo => <TodoListItem
-      todo={todo}
-      remove={() => removeTodo(todo)}
-      save={(updated: Todo) => updateTodo(todo, updated)}
-    />)}
-  </React.Fragment>}
+  {({updateTodo, removeTodo}) => todos.map(todo => <TodoListItem
+    todo={todo}
+    remove={() => removeTodo(todo)}
+    save={(updated: Todo) => updateTodo(todo, updated)}
+  />)}
 </ServiceContext.Consumer>;
 
 const CreateTodoForm: React.FC = () => {
